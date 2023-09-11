@@ -16,8 +16,8 @@ RUN mkdir src \
 # Copy your source tree
 COPY ./src ./src
 
-# Build for release.
-RUN cargo build --release
+# Build for release. 
+RUN cargo build --release && ls /usr/src/target/release/
 
 # Our second stage, that creates the final image
 FROM ubuntu:jammy
