@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% import "_header.html" as header %}
+
+{% block content %}
+    {{ header::header(title=page_title) }}
+    <p>Welcome to the dashboard!</p>
+{% endblock content %}

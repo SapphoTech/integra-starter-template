@@ -6,6 +6,21 @@ use integra::core::router::{ServiceWithRouter};
 use std::sync::Arc;
 use hyper::service::make_service_fn;
 
+use once_cell::sync::Lazy;
+use std::sync::Mutex;
+use tera::Tera;
+
+static TERA: Lazy<Mutex<Tera>> = Lazy::new(|| {
+    let tera = match Tera::new("src/templates/**/*") {
+        Ok(t) => t,
+        Err(e) => {
+            eprintln!("Parsing error(s): {}", e);
+            std::process::exit(1);
+        }
+    };
+    Mutex::new(tera)
+});
+
 mod routes;
 mod web;
 mod controllers;
@@ -21,7 +36,7 @@ async fn main() {
         async move { Ok::<_, Infallible>(service) }
     });
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 3029));
     let server = Server::bind(&addr).serve(make_svc);
 
     if let Err(e) = server.await {

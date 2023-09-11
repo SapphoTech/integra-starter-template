@@ -6,7 +6,7 @@ use integra::core::router::Route;
 pub fn routes() -> Vec<Route> {
     vec![
         Route::get("/", DashboardController::index),
-        Route::get("/hello", PageController::greet),
+        Route::get("/hello", DashboardController::show),
         Route::get("/user/{id}", UserController::show)
     ]
 }
