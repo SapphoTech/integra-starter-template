@@ -23,7 +23,7 @@ RUN cargo build --release && ls /usr/src/target/release/
 FROM ubuntu:jammy
 
 # Copy the build artifact from the builder stage and create a new binary.
-COPY --from=builder /usr/src/target/release/integra-starter-project /usr/local/bin
+COPY --from=builder /usr/src/target/release/integra_project /usr/local/bin
 
 # Set the binary as the entrypoint of the container
-ENTRYPOINT ["integra-starter-project"]
+ENTRYPOINT ["integra_project"]
