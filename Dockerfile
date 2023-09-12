@@ -1,9 +1,9 @@
 FROM rust:latest as builder
-WORKDIR /app/src
+WORKDIR /usr/src
 RUN USER=root cargo new --bin ht
 COPY Cargo.toml ./ht/
 
-WORKDIR /app/src/ht
+WORKDIR /usr/src/ht
 RUN cargo build --release
 
 COPY ./ ./
@@ -18,6 +18,6 @@ RUN apt update \
 
 EXPOSE 80 443
 
-COPY --from=builder /app/src/ht/target/release/ht /app/
+COPY --from=builder /usr/src/ht/target/release/ht /app/
 
 CMD ["/app/ht"]
