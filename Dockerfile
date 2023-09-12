@@ -1,9 +1,9 @@
 FROM rust:latest as builder
 WORKDIR /usr/src
-RUN USER=root cargo new --bin ht
-COPY Cargo.toml ./ht/
+RUN USER=root cargo new --bin integra_project
+COPY Cargo.toml ./integra_project/
 
-WORKDIR /usr/src/ht
+WORKDIR /usr/src/integra_project
 RUN cargo build --release
 
 COPY ./ ./
@@ -18,6 +18,6 @@ RUN apt update \
 
 EXPOSE 80 443
 
-COPY --from=builder /usr/src/ht/target/release/ht /app/
+COPY --from=builder /usr/src/integra_project/target/release/integra_project /app/
 
-CMD ["/app/ht"]
+CMD ["/app/integra_project"]
