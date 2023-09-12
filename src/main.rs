@@ -25,7 +25,7 @@ mod routes;
 mod web;
 mod controllers;
 
-#[tokio::main(flavor = "current_thread")]
+#[tokio::main] //(flavor = "current_thread") use current thread to use 1 cpu only
 async fn main() {
     let router = get_all_routes();
     let shared_router = Arc::new(router);
