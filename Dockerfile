@@ -20,4 +20,4 @@ EXPOSE 3000
 
 COPY --from=builder /usr/src/integra_project/target/release/integra_project /app/
 
-CMD ["/app/integra_project"]
+CMD ["/app/integra_project", "--bind", "0.0.0.0:3000"]
