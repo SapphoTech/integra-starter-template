@@ -5,7 +5,6 @@ use crate::web::get_all_routes;
 use integra::core::router::{ServiceWithRouter};
 use std::sync::Arc;
 use hyper::service::make_service_fn;
-use std::env;
 
 use once_cell::sync::Lazy;
 use std::sync::Mutex;
@@ -37,7 +36,7 @@ async fn main() {
     });
 
     let ip = env::var("IP").unwrap_or_else(|_| String::from("0.0.0.0"));
-    let port = env::var("PORT").unwrap_or_else(|_| String::from("3000"));
+    let port = env::var("PORT").unwrap_or_else(|_| String::from("8080"));
     let addr = format!("{}:{}", ip, port).parse::<SocketAddr>().unwrap();
     let server = Server::bind(&addr).serve(make_svc);
 
