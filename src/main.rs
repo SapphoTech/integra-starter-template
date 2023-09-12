@@ -25,7 +25,6 @@ mod routes;
 mod web;
 mod controllers;
 
-
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     let router = get_all_routes();
@@ -36,7 +35,7 @@ async fn main() {
         async move { Ok::<_, Infallible>(service) }
     });
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3029));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     let server = Server::bind(&addr).serve(make_svc);
 
     if let Err(e) = server.await {
