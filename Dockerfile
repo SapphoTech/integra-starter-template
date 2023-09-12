@@ -16,7 +16,7 @@ RUN apt update \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-EXPOSE 80 443
+EXPOSE 3000
 
 COPY --from=builder /usr/src/integra_project/target/release/integra_project /app/
 
